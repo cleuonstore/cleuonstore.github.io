@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleuon Store - Aset Digital Berkualitas</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Konfigurasi Tailwind dengan Warna Brand Cleuon -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'dark-primary': '#111827', // gray-900
+                        'dark-secondary': '#1f2937', // gray-800
+                        'cleuon-red': '#ea4335',
+                        'cleuon-yellow': '#fbbc05',
+                        'cleuon-green': '#34a853',
+                        'cleuon-blue': '#4285f4',
+                        'cleuon-gold': '#d97706', // Warna emas untuk label Premium
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-dark-primary text-gray-300 font-sans antialiased">
+
+    <!-- ===== Header & Pencarian ===== -->
+    <header class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <!-- Logo dan Nama Brand -->
+                <div class="flex justify-center items-center gap-4 mb-2">
+                    <img src="logo.jpg" alt="Logo Cleuon Store" class="w-16 h-16 rounded-full">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white">
+                        Cleuon Store
+                    </h1>
+                </div>
+
+                <!-- Link Sosial Media -->
+                <div class="flex justify-center items-center gap-5 mt-4 mb-8">
+                    <a href="#" aria-label="Facebook" class="text-gray-500 hover:text-white transition-colors"><svg
+                            class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                                clip-rule="evenodd" />
+                        </svg></a>
+                    <a href="#" aria-label="TikTok" class="text-gray-500 hover:text-white transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-2.43.05-4.86-.95-6.69-2.79-1.76-1.76-2.59-4.18-2.6-6.75-.02-2.8.9-5.59 2.81-7.51 1.91-1.91 4.7-2.8 7.5-2.79.01 2.05-.01 4.1.01 6.15.01 1.76-1.19 3.42-2.89 4.09-1.96.78-4.22.33-5.66-1.24-1.22-1.33-1.63-3.24-1.29-4.93.33-1.66 1.41-3.11 2.96-3.89 1.51-.77 3.2-.84 4.78-.23.01-2.06.01-4.11.01-6.16z" />
+                        </svg></a>
+                    <a href="#" aria-label="Instagram" class="text-gray-500 hover:text-white transition-colors"><svg
+                            class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.08 2.525c.636-.247 1.363-.416 2.427-.465C9.53 2.013 9.884 2 12.315 2zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.25-9.75a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                                clip-rule="evenodd" />
+                        </svg></a>
+                    <a href="#" aria-label="WhatsApp" class="text-gray-500 hover:text-white transition-colors"><svg
+                            class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zM9.51 7.31c.21-.24.46-.38.72-.38.21 0 .36.03.46.04.19.03.41.22.46.22.11 0 .16.05.24.13.08.08.25.3.43.51.18.21.33.43.43.51.11.08.18.13.28.13.08 0 .23-.03.33-.05.19-.05.43-.11.48-.13.33-.13.63-.26.96-.46.33-.2.6-.43.85-.73.25-.3.43-.68.43-1.01 0-.13-.03-.26-.08-.38s-.13-.24-.23-.33c-.1-.1-.23-.2-.38-.28a.42.42 0 00-.23-.08c-.03 0-.05.01-.08.01-.36 0-.68.2-.98.48-.28.28-.53.63-.73.93-.11.16-.23.3-.33.38-.03.03-.05.04-.08.04-.03 0-.08-.01-.13-.03-.21-.08-.43-.18-.68-.3-.25-.11-.48-.26-.68-.43-.41-.33-.75-.73-1.01-1.18-.13-.23-.26-.48-.38-.73s-.2-.38-.2-.51c0-.1.01-.18.04-.26.03-.08.08-.16.13-.23.05-.08.13-.16.23-.26.1-.1.18-.18.23-.23.03-.03.05-.05.05-.08s-.01-.08-.04-.13c-.03-.05-.08-.13-.13-.23-.28-.48-.58-.93-.88-1.36-.11-.16-.23-.3-.36-.41-.13-.11-.28-.2-.43-.28-.16-.08-.33-.13-.51-.13h-.11c-.13 0-.26.01-.38.04-.13.03-.26.08-.38.13-.13.05-.26.13-.38.23-.11.1-.23.23-.33.38-.1.16-.2.33-.28.53-.08.2-.13.41-.13.63 0 .33.08.65.23.96.16.3.36.6.58.88.23.28.48.55.75.83.28.28.58.55.88.83.43.41.88.75 1.36 1.03.48.28.98.48 1.51.6s1.08.18 1.66.18c.3 0 .6-.03.88-.08.28-.05.55-.13.83-.23.28-.11.53-.23.78-.38.25-.16.48-.33.68-.53.2-.2.38-.41.51-.63.13-.23.23-.48.3-.75l.06-.28z" />
+                        </svg></a>
+                </div>
+
+                <p class="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">Aset digital berkualitas tinggi untuk
+                    mempercepat alur kerja proyek kreatif Anda.</p>
+
+                <!-- Fitur Pencarian -->
+                <div class="mt-8 max-w-xl mx-auto">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input type="search" id="search-input" placeholder="Cari aset berdasarkan nama..."
+                            class="w-full bg-dark-secondary border border-gray-700 rounded-lg py-3 pl-10 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-cleuon-blue focus:border-cleuon-blue transition-colors">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== Bagian Daftar Produk ===== -->
+    <main class="pb-20">
+        <!-- Container utama untuk membatasi lebar dan memberi padding -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Kontainer untuk semua kategori produk -->
+            <div id="product-categories-container" class="space-y-16">
+                <!-- Kategori dan produk akan dimuat di sini oleh JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="bg-dark-secondary border-t border-gray-800">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 text-sm">&copy; 2025 Cleuon Store. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript untuk memuat produk dan fungsionalitas pencarian -->
+    <script>
+        const themeConfig = {
+            "blue": {
+                "icon_bg": "bg-cleuon-blue/10",
+                "icon_text": "text-cleuon-blue",
+                "button_bg": "bg-cleuon-blue",
+                "icon_svg": `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`
+            },
+            "yellow": {
+                "icon_bg": "bg-cleuon-yellow/10",
+                "icon_text": "text-cleuon-yellow",
+                "button_bg": "bg-cleuon-yellow",
+                "icon_svg": `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.636 18.364a9 9 0 010-12.728m2.828 9.9a5 5 0 010-7.072" /></svg>`
+            },
+            "red": {
+                "icon_bg": "bg-cleuon-red/10",
+                "icon_text": "text-cleuon-red",
+                "button_bg": "bg-cleuon-red",
+                "icon_svg": `<svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" /><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>`
+            }
+        };
+
+        function renderProducts(categorizedProducts) {
+            const mainContainer = document.getElementById('product-categories-container');
+            if (!mainContainer) return;
+
+            let allContent = '';
+            for (const category in categorizedProducts) {
+                const products = categorizedProducts[category];
+
+                allContent += `
+                    <div class="category-section">
+                        <h2 class="text-3xl font-bold text-white mb-8 category-title">${category} (${products.length})</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                `;
+
+                products.forEach(product => {
+                    const theme = themeConfig[product.color_theme];
+                    const labelBgColor = product.type === 'Free' ? 'bg-cleuon-green' : 'bg-cleuon-gold';
+
+                    allContent += `
+                        <div class="product-card bg-dark-secondary rounded-xl overflow-hidden flex flex-col group transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-gray-900/50">
+                            <div class="relative">
+                                <img src="${product.image_url}" 
+                                     alt="Gambar ${product.title}" 
+                                     class="w-full h-48 object-cover group-hover:opacity-90 transition-opacity"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/600x400/1f2937/ffffff?text=Gambar+Error';">
+                                <div class="absolute top-3 right-3 ${labelBgColor} text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">
+                                    ${product.type}
+                                </div>
+                            </div>
+                            <div class="p-6 flex-grow flex flex-col">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <div class="${theme.icon_bg} ${theme.icon_text} w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        ${theme.icon_svg}
+                                    </div>
+                                    <h3 class="text-xl font-bold text-white product-title">${product.title}</h3>
+                                </div>
+                                <p class="text-gray-400 text-sm flex-grow product-description">${product.description}</p>
+                                <div class="mt-6 pt-4 border-t border-gray-700/50 flex items-center gap-3">
+                                    <a href="${product.showcase}" target="_blank" class="w-full text-center text-sm font-semibold text-gray-300 border border-gray-600 rounded-lg py-2 px-3 hover:bg-gray-700 transition-colors">
+                                        Lihat Showcase
+                                    </a>
+                                    <a href="${product.link}" class="w-full text-center text-sm font-semibold text-white ${theme.button_bg} rounded-lg py-2 px-3 hover:opacity-90 transition-opacity">
+                                        Get It
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                allContent += `
+                        </div>
+                    </div>
+                `;
+            }
+            mainContainer.innerHTML = allContent;
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            if (!searchInput) return;
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const categories = document.querySelectorAll('.category-section');
+
+                categories.forEach(category => {
+                    const products = category.querySelectorAll('.product-card');
+                    let visibleProducts = 0;
+
+                    products.forEach(product => {
+                        const title = product.querySelector('.product-title').textContent.toLowerCase();
+                        const description = product.querySelector('.product-description').textContent.toLowerCase();
+
+                        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                            product.style.display = 'flex';
+                            visibleProducts++;
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+
+                    // Sembunyikan kategori jika tidak ada produk yang cocok
+                    if (visibleProducts > 0) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('products.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(categorizedProducts => {
+                    renderProducts(categorizedProducts);
+                    setupSearch(); // Panggil fungsi pencarian setelah produk dirender
+                })
+                .catch(error => {
+                    console.error('Error memuat data produk:', error);
+                    const mainContainer = document.getElementById('product-categories-container');
+                    mainContainer.innerHTML = '<p class="text-center text-red-400">Gagal memuat produk. Silakan cek file products.json dan pastikan server berjalan dengan benar.</p>';
+                });
+        });
+    </script>
+
+</body>
+
+</html>

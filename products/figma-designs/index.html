@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleuon Store - Master Showcase</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .product-card { transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-sm sticky top-0 z-10">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <a href="/" class="flex justify-between items-center py-4">
+                    <h1 class="text-2xl font-bold text-slate-800">Cleuon <span class="text-indigo-600"> Store</span></h1>
+                </a>
+            </div>
+        </header>
+
+        <!-- Kontrol Filter dan Pencarian -->
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-4">
+            <!-- Pencarian -->
+            <div class="relative flex-grow">
+                <input type="text" id="search-input" placeholder="Cari template..." class="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" /></svg>
+                </div>
+            </div>
+            <!-- Filter Kategori -->
+            <div id="category-container" class="flex flex-wrap gap-2 items-center"></div>
+             <!-- Filter Tag -->
+            <div id="tags-container" class="flex flex-wrap gap-2 items-center"></div>
+        </div>
+
+        <!-- Showcase Grid -->
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <div id="showcase-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <p id="loading-message" class="col-span-full text-center text-slate-500 py-10">Memuat data produk...</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- PERUBAHAN: HTML untuk Modal Gambar -->
+    <div id="image-modal" class="fixed inset-0 bg-black bg-opacity-80 z-50 hidden items-center justify-center p-4 transition-opacity duration-300">
+        <div class="relative bg-white p-2 rounded-lg max-w-4xl max-h-full shadow-xl">
+            <button id="close-modal" class="absolute -top-3 -right-3 bg-white text-black rounded-full p-1.5 z-10 hover:bg-gray-200 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <img id="modal-image" src="" alt="Gambar ukuran penuh" class="max-w-full max-h-[90vh] object-contain">
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const showcaseGrid = document.getElementById('showcase-grid');
+            const searchInput = document.getElementById('search-input');
+            const categoryContainer = document.getElementById('category-container');
+            const tagsContainer = document.getElementById('tags-container');
+            const loadingMessage = document.getElementById('loading-message');
+
+            // PERUBAHAN: Referensi elemen modal
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const closeModalButton = document.getElementById('close-modal');
+
+            let allItems = [];
+            let activeCategory = 'All';
+            let activeTag = 'All';
+
+            // PERUBAHAN: Fungsi untuk membuka dan menutup modal
+            function openModal(imageUrl) {
+                modalImage.src = imageUrl;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+
+            function closeModal() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modalImage.src = ''; // Hapus src agar tidak menampilkan gambar lama sejenak
+            }
+
+            async function fetchData() {
+                try {
+                    const response = await fetch('./master_showcase_data.json');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    
+                    allItems = await response.json();
+                    renderCategories();
+                    renderItems();
+                } catch (error) {
+                    console.error("Gagal memuat data:", error);
+                    loadingMessage.textContent = 'Gagal memuat data master. Pastikan Anda sudah menjalankan skrip "master_showcase_data.js".';
+                }
+            }
+
+            function renderItems() {
+                showcaseGrid.innerHTML = '';
+                const searchTerm = searchInput.value.toLowerCase();
+
+                const filteredItems = allItems.filter(item => {
+                    const categoryMatch = activeCategory === 'All' || item.category === activeCategory;
+                    const tagMatch = activeTag === 'All' || (item.tags && item.tags.includes(activeTag));
+                    const searchMatch = item.name.toLowerCase().includes(searchTerm);
+                    return categoryMatch && tagMatch && searchMatch;
+                });
+
+                if (filteredItems.length === 0) {
+                    loadingMessage.innerHTML = 'Tidak ada produk yang cocok dengan kriteria Anda.';
+                    showcaseGrid.appendChild(loadingMessage);
+                    return;
+                }
+
+                filteredItems.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden flex flex-col';
+                    card.innerHTML = `
+                        <!-- PERUBAHAN: Menambahkan class 'product-image' dan cursor-pointer -->
+                        <img src="${item.imageUrl}" alt="${item.name}" class="product-image w-full h-48 object-cover cursor-pointer" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Gambar+Rusak';">
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-md font-semibold text-slate-800 flex-grow">${item.name}</h3>
+                            <div class="mt-2 flex flex-wrap gap-1">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded-full font-medium">${item.category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>
+                                ${item.tags && item.tags.slice(0, 2).map(tag => `<span class="text-xs bg-slate-200 text-slate-700 px-2 py-1 rounded-full">${tag}</span>`).join('')}
+                            </div>
+                        </div>`;
+                    
+                    // PERUBAHAN: Menambahkan event listener ke gambar
+                    card.querySelector('.product-image').addEventListener('click', () => {
+                        openModal(item.imageUrl);
+                    });
+
+                    showcaseGrid.appendChild(card);
+                });
+            }
+
+            function renderCategories() {
+                const allCategories = new Set(['All', ...allItems.map(item => item.category)]);
+                categoryContainer.innerHTML = '<span class="text-sm font-medium text-slate-600 mr-2">Kategori:</span>';
+                
+                allCategories.forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    button.dataset.category = category;
+                    button.className = `px-3 py-1 text-sm font-medium rounded-full transition ${category === activeCategory ? 'bg-indigo-600 text-white' : 'bg-white text-slate-700 border hover:bg-slate-100'}`;
+                    button.onclick = () => {
+                        activeCategory = category;
+                        activeTag = 'All';
+                        renderCategories();
+                        renderTags();
+                        renderItems();
+                    };
+                    categoryContainer.appendChild(button);
+                });
+            }
+
+            function renderTags() {
+                const itemsInCurrentCategory = allItems.filter(item => activeCategory === 'All' || item.category === activeCategory);
+                const allTags = new Set(['All', ...itemsInCurrentCategory.flatMap(item => item.tags || [])]);
+                
+                if (allTags.size > 1) {
+                    tagsContainer.style.display = 'flex';
+                    tagsContainer.innerHTML = '<span class="text-sm font-medium text-slate-600 mr-2">Tags:</span>';
+                    allTags.forEach(tag => {
+                        const button = document.createElement('button');
+                        button.textContent = tag;
+                        button.dataset.tag = tag;
+                        button.className = `px-3 py-1 text-sm font-medium rounded-full transition ${tag === activeTag ? 'bg-indigo-600 text-white' : 'bg-white text-slate-700 border hover:bg-slate-100'}`;
+                        button.onclick = () => {
+                            activeTag = tag;
+                            renderTags();
+                            renderItems();
+                        };
+                        tagsContainer.appendChild(button);
+                    });
+                } else {
+                    tagsContainer.style.display = 'none';
+                }
+            }
+
+            // PERUBAHAN: Event listener untuk menutup modal
+            closeModalButton.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                // Tutup modal jika latar belakang diklik, bukan gambar itu sendiri
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            window.addEventListener('keydown', (e) => {
+                // Tutup modal jika tombol Escape ditekan
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            searchInput.addEventListener('input', renderItems);
+            fetchData();
+        });
+    </script>
+</body>
+</html>

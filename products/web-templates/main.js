@@ -1,0 +1,592 @@
+$(document).ready(function () {
+    // Data JSON yang digabungkan dan diperbarui untuk semua template
+    const templateData = [
+        // Data dari snippet 1
+        { "nama": "Append", "kategori": "Lainnya", "gambar": "_screens/append-1.0.0.png" },
+        { "nama": "Aircon", "kategori": "Lainnya", "gambar": "_screens/aircon-1.0.0.png" },
+        { "nama": "Apex", "kategori": "Lainnya", "gambar": "_screens/apex-1.0.0.png" },
+        { "nama": "A-World", "kategori": "Lainnya", "gambar": "_screens/a-world-1.0.0.png" },
+        { "nama": "Archiark", "kategori": "Bisnis", "gambar": "_screens/archiark-main.png" },
+        { "nama": "Bizconsult", "kategori": "Bisnis", "gambar": "_screens/bizconsult-1.0.0.png" },
+        { "nama": "Arkitektur", "kategori": "Lainnya", "gambar": "_screens/arkitektur-1.0.0.png" },
+        { "nama": "Baker", "kategori": "Kuliner", "gambar": "_screens/baker-1.0.0.png" },
+        { "nama": "Biznews", "kategori": "Bisnis", "gambar": "_screens/biznews-1.0.0.png" },
+        { "nama": "Breeze Web", "kategori": "Lainnya", "gambar": "_screens/Breeze-Web-1.0.0.png" },
+        { "nama": "Cakezone", "kategori": "Kuliner", "gambar": "_screens/cakezone-1.0.0.png" },
+        { "nama": "Boldo", "kategori": "Bisnis", "gambar": "_screens/boldo-1.1.0.png" },
+        { "nama": "Capiclean", "kategori": "Lainnya", "gambar": "_screens/Capiclean-1.0.0.png" },
+        { "nama": "Carserv", "kategori": "Lainnya", "gambar": "_screens/carserv-1.0.0.png" },
+        { "nama": "Celestial Admin", "kategori": "Admin", "gambar": "_screens/celestial-admin-1.0.0.png" },
+        { "nama": "Casinal", "kategori": "Lainnya", "gambar": "_screens/Casinal-1.0.0.png" },
+        { "nama": "Chariteam", "kategori": "Lainnya", "gambar": "_screens/chariteam-1.0.0.png" },
+        { "nama": "Connect Plus", "kategori": "Admin", "gambar": "_screens/connect-plus-1.0.0.png" },
+        { "nama": "Corso", "kategori": "Lainnya", "gambar": "_screens/corso-1.0.0.png" },
+        { "nama": "CryptoCoin", "kategori": "Lainnya", "gambar": "_screens/CryptoCoin-1.0.0.png" },
+        { "nama": "Cyborg", "kategori": "Game", "gambar": "_screens/cyborg-1.0.0.png" },
+        { "nama": "Cycle", "kategori": "Lainnya", "gambar": "_screens/Cycle-1.0.0.png" },
+        { "nama": "Dairy Website", "kategori": "Kuliner", "gambar": "_screens/dairy-website.png" },
+        { "nama": "Dashmin", "kategori": "Admin", "gambar": "_screens/dashmin-1.0.0.png" },
+        { "nama": "Dentcare", "kategori": "Medis", "gambar": "_screens/dentcare-1.0.0.png" },
+        { "nama": "Dgcom", "kategori": "Bisnis", "gambar": "_screens/dgcom-1.0.0.png" },
+        { "nama": "Digital 1", "kategori": "Lainnya", "gambar": "_screens/digital-1-1.0.0.png" },
+        { "nama": "Drivin", "kategori": "Lainnya", "gambar": "_screens/drivin-1.0.0.png" },
+        { "nama": "Edu Meeting", "kategori": "Edukasi", "gambar": "_screens/edu-meeting.png" },
+        { "nama": "Eduwell", "kategori": "Edukasi", "gambar": "_screens/eduwell-1.0.0.png" },
+        { "nama": "Eduprix", "kategori": "Edukasi", "gambar": "_screens/eduprix-v1.0.0.png" },
+        { "nama": "Elearning", "kategori": "Edukasi", "gambar": "_screens/elearning-1.0.0.png" },
+        { "nama": "Ensurance", "kategori": "Bisnis", "gambar": "_screens/ensurance-v1.0.0.png" },
+        { "nama": "Farmfresh", "kategori": "E-commerce", "gambar": "_screens/farmfresh-1.0.0.png" },
+        { "nama": "Faster", "kategori": "Lainnya", "gambar": "_screens/faster-1.0.0.png" },
+        { "nama": "Feane", "kategori": "Kuliner", "gambar": "_screens/feane-1.0.0.png" },
+        { "nama": "FestavaLive", "kategori": "Lainnya", "gambar": "_screens/FestavaLive-1.0.0.png" },
+        { "nama": "Finanza", "kategori": "Bisnis", "gambar": "_screens/finanza-1.0.0.png" },
+        { "nama": "FitApp", "kategori": "Lainnya", "gambar": "_screens/FitApp-fitapp.png" },
+        { "nama": "Fotogency", "kategori": "Fotografi", "gambar": "_screens/fotogency-v1.0.0.png" },
+        { "nama": "Foody2", "kategori": "Kuliner", "gambar": "_screens/foody2-1.0.0.png" },
+        { "nama": "Fruitkha", "kategori": "E-commerce", "gambar": "_screens/fruitkha-1.0.0.png" },
+        { "nama": "Gardener", "kategori": "Lainnya", "gambar": "_screens/gardener-1.0.0.png" },
+        { "nama": "Gohub", "kategori": "Lainnya", "gambar": "_screens/gohub-1.0.0.png" },
+        { "nama": "Grad School", "kategori": "Edukasi", "gambar": "_screens/grad-school-1.0.0.png" },
+        { "nama": "Greenhost", "kategori": "Lainnya", "gambar": "_screens/greenhost-1.0.0.png" },
+        { "nama": "GrowMark", "kategori": "Bisnis", "gambar": "_screens/GrowMark-1.0.0.png" },
+        { "nama": "Haircut", "kategori": "Lainnya", "gambar": "_screens/haircut-1.0.0.png" },
+        { "nama": "Hotelier", "kategori": "Travel", "gambar": "_screens/hotelier-1.0.0.png" },
+        { "nama": "Indsutrio", "kategori": "Bisnis", "gambar": "_screens/Indsutrio-1.0.0.png" },
+        { "nama": "Insure", "kategori": "Lainnya", "gambar": "_screens/insure-1.0.0.png" },
+        { "nama": "Jobentry", "kategori": "Bisnis", "gambar": "_screens/jobentry-1.0.0.png" },
+        { "nama": "Keto", "kategori": "Kuliner", "gambar": "_screens/keto-1.0.0.png" },
+        { "nama": "Kider", "kategori": "Edukasi", "gambar": "_screens/kider-1.0.0.png" },
+        { "nama": "Kidkinder", "kategori": "Edukasi", "gambar": "_screens/kidkinder-1.0.0.png" },
+        { "nama": "KindHeart", "kategori": "Lainnya", "gambar": "_screens/KindHeart-1.0.0.png" },
+        { "nama": "Klar", "kategori": "Landing Page", "gambar": "_screens/klar-1.0.0.png" },
+        { "nama": "Klinik", "kategori": "Medis", "gambar": "_screens/klinik-1.0.0.png" },
+        { "nama": "Landwind", "kategori": "Landing Page", "gambar": "_screens/landwind-1.0.0.png" },
+        { "nama": "Materio", "kategori": "Admin", "gambar": "_screens/materio-1.0.0.png" },
+        { "nama": "Logistica", "kategori": "Lainnya", "gambar": "_screens/logistica-1.0.0.png" },
+        { "nama": "Meyawo", "kategori": "Portofolio", "gambar": "_screens/meyawo-1.0.0.png" },
+        { "nama": "Montana Master", "kategori": "Travel", "gambar": "_screens/montana-master.png" },
+        { "nama": "Multishop", "kategori": "E-commerce", "gambar": "_screens/multishop-1.0.0.png" },
+        { "nama": "Motto", "kategori": "Bisnis", "gambar": "_screens/motto-1.0.0.png" },
+        { "nama": "Nomad Force", "kategori": "Lainnya", "gambar": "_screens/nomad-force-1.0.0.png" },
+        { "nama": "Orthoc", "kategori": "Medis", "gambar": "_screens/orthoc.png" },
+        { "nama": "Painter", "kategori": "Lainnya", "gambar": "_screens/painter-1.0.0.png" },
+        { "nama": "Photozone", "kategori": "Fotografi", "gambar": "_screens/photozone-1.0.0.png" },
+        { "nama": "PodTalk", "kategori": "Lainnya", "gambar": "_screens/PodTalk-1.0.0.png" },
+        { "nama": "Prixima", "kategori": "Lainnya", "gambar": "_screens/prixima-1.0.0.png" },
+        { "nama": "Proman", "kategori": "Portofolio", "gambar": "_screens/proman-1.0.0.png" },
+        { "nama": "Property", "kategori": "Lainnya", "gambar": "_screens/property-1.0.0.png" },
+        { "nama": "Productly", "kategori": "Landing Page", "gambar": "_screens/productly-v1.0.0.png" },
+        { "nama": "Real Estate", "kategori": "Lainnya", "gambar": "_screens/real-estate-html-template.png" },
+        { "nama": "Restaurantly", "kategori": "Kuliner", "gambar": "_screens/restaurantly-1.0.0.png" },
+        { "nama": "Restoran", "kategori": "Kuliner", "gambar": "_screens/restoran-1.0.0.png" },
+        { "nama": "Revolve", "kategori": "Portofolio", "gambar": "_screens/revolve-1.0.0.png" },
+        { "nama": "Securex", "kategori": "Lainnya", "gambar": "_screens/securex-1.0.0.png" },
+        { "nama": "Sneat", "kategori": "Admin", "gambar": "_screens/sneat-1.0.0.png" },
+        { "nama": "Seomaster", "kategori": "Bisnis", "gambar": "_screens/seomaster-1.0.0.png" },
+        { "nama": "Soffer", "kategori": "Lainnya", "gambar": "_screens/soffer-1.0.0.png" },
+        { "nama": "Solartec", "kategori": "Bisnis", "gambar": "_screens/solartec-1.0.0.png" },
+        { "nama": "Star Admin2", "kategori": "Admin", "gambar": "_screens/star-admin2-1.0.0.png" },
+        { "nama": "Startup2", "kategori": "Bisnis", "gambar": "_screens/startup2-1.0.0.png" },
+        { "nama": "Sterial", "kategori": "Lainnya", "gambar": "_screens/sterial-1.0.0.png" },
+        { "nama": "Stride", "kategori": "General", "gambar": "_screens/stride-1.0.0.png" },
+        { "nama": "Studio Master", "kategori": "Portofolio", "gambar": "_screens/studio-master.png" },
+        { "nama": "Tale", "kategori": "Lainnya", "gambar": "_screens/tale-1.0.0.png" },
+        { "nama": "Tivo", "kategori": "Landing Page", "gambar": "_screens/tivo-1.0.0.png" },
+        { "nama": "Tour", "kategori": "Travel", "gambar": "_screens/tour-1.0.0.png" },
+        { "nama": "Training Studio", "kategori": "Lainnya", "gambar": "_screens/training-studio-1.0.0.png" },
+        { "nama": "UpConstruction", "kategori": "Bisnis", "gambar": "_screens/UpConstruction-1.0.0.png" },
+        { "nama": "Vegefoods", "kategori": "E-commerce", "gambar": "_screens/vegefoods-master.png" },
+        { "nama": "WeBuild", "kategori": "Bisnis", "gambar": "_screens/webuild-1.0.0.png" },
+        { "nama": "Woody", "kategori": "Bisnis", "gambar": "_screens/woody-1.0.0.png" },
+        { "nama": "Wooxtravel", "kategori": "Travel", "gambar": "_screens/wooxtravel-1.0.0.png" },
+        { "nama": "Zoofari", "kategori": "Lainnya", "gambar": "_screens/zoofari-1.0.0.png" },
+        { "nama": "ZouFarm", "kategori": "E-commerce", "gambar": "_screens/zouFarm-main.png" },
+
+        // Data dari snippet 2
+        { "nama": "Phoenix", "kategori": "Admin", "gambar": "_screens/img001.png" },
+        { "nama": "Elaadmin", "kategori": "Admin", "gambar": "_screens/img12.png" },
+        { "nama": "AppLab", "kategori": "Multipurpose", "gambar": "_screens/img10.png" },
+        { "nama": "Jadoo", "kategori": "Travel", "gambar": "_screens/img05.png" },
+        { "nama": "LaslesVPN", "kategori": "Multipurpose", "gambar": "_screens/img07.png" },
+        { "nama": "Purple Admin", "kategori": "Admin", "gambar": "_screens/img16.png" },
+        { "nama": "FoodWagon", "kategori": "Kuliner", "gambar": "_screens/img002.png" },
+        { "nama": "Eshopper", "kategori": "E-commerce", "gambar": "_screens/img003.png" },
+        { "nama": "Sneat", "kategori": "Admin", "gambar": "_screens/img73.png" },
+        { "nama": "Skydash", "kategori": "Admin", "gambar": "_screens/img55.png" },
+        { "nama": "Little Squirrel", "kategori": "Lainnya", "gambar": "_screens/img23.png" },
+        { "nama": "Zay Shop", "kategori": "E-commerce", "gambar": "_screens/img03.png" },
+        { "nama": "Titan", "kategori": "Multipurpose", "gambar": "_screens/img04.png" },
+        { "nama": "Karma", "kategori": "E-commerce", "gambar": "_screens/img06.png" },
+        { "nama": "Original", "kategori": "Lainnya", "gambar": "_screens/img08.png" },
+        { "nama": "Shoppers", "kategori": "E-commerce", "gambar": "_screens/img09.png" },
+        { "nama": "SeoGram", "kategori": "Landing Page", "gambar": "_screens/img13.png" },
+        { "nama": "CakeZone", "kategori": "Landing Page", "gambar": "_screens/img14.png" },
+        { "nama": "EcoHosting", "kategori": "Lainnya", "gambar": "_screens/img15.png" },
+        { "nama": "FoodeiBlog", "kategori": "Kuliner", "gambar": "_screens/img17.png" },
+        { "nama": "Softy Pinko", "kategori": "Bisnis", "gambar": "_screens/img18.png" },
+        { "nama": "Windmill", "kategori": "Admin", "gambar": "_screens/img19.png" },
+        { "nama": "Graindashboard", "kategori": "Admin", "gambar": "_screens/img20.png" },
+        { "nama": "Cleopatra", "kategori": "Admin", "gambar": "_screens/img21.png" },
+        { "nama": "Appco", "kategori": "Landing Page", "gambar": "_screens/img22.png" },
+        { "nama": "Neat", "kategori": "Portofolio", "gambar": "_screens/img24.png" },
+        { "nama": "Ariclaw", "kategori": "Lainnya", "gambar": "_screens/img25.png" },
+        { "nama": "Eventalk", "kategori": "Lainnya", "gambar": "_screens/img26.png" },
+        { "nama": "Carbook", "kategori": "Travel", "gambar": "_screens/img27.png" },
+        { "nama": "Tournest", "kategori": "Travel", "gambar": "_screens/img28.png" },
+        { "nama": "Medino", "kategori": "Medis", "gambar": "_screens/img29.png" },
+        { "nama": "DeerHost", "kategori": "Lainnya", "gambar": "_screens/img30.png" },
+        { "nama": "Ultim8", "kategori": "Bisnis", "gambar": "_screens/img31.png" },
+        { "nama": "Satner", "kategori": "Portofolio", "gambar": "_screens/img32.png" },
+        { "nama": "More", "kategori": "Portofolio", "gambar": "_screens/img33.png" },
+        { "nama": "Paper Dashboard", "kategori": "Admin", "gambar": "_screens/img34.png" },
+        { "nama": "Majestic", "kategori": "E-commerce", "gambar": "_screens/img35.png" },
+        { "nama": "Winkel", "kategori": "E-commerce", "gambar": "_screens/img36.png" },
+        { "nama": "Sevi", "kategori": "Landing Page", "gambar": "_screens/img37.png" },
+        { "nama": "Nova", "kategori": "Lainnya", "gambar": "_screens/img38.png" },
+        { "nama": "DrPro", "kategori": "Medis", "gambar": "_screens/img39.png" },
+        { "nama": "Pacific", "kategori": "Travel", "gambar": "_screens/img40.png" },
+        { "nama": "Boxus", "kategori": "Lainnya", "gambar": "_screens/img41.png" },
+        { "nama": "Asentus", "kategori": "Bisnis", "gambar": "_screens/img42.png" },
+        { "nama": "Amado", "kategori": "E-commerce", "gambar": "_screens/img43.png" },
+        { "nama": "Glint", "kategori": "Lainnya", "gambar": "_screens/img44.png" },
+        { "nama": "Flusk", "kategori": "Multipurpose", "gambar": "_screens/img45.png" },
+        { "nama": "Notes", "kategori": "Landing Page", "gambar": "_screens/img46.png" },
+        { "nama": "Justice", "kategori": "Lainnya", "gambar": "_screens/img47.png" },
+        { "nama": "Cozastore", "kategori": "E-commerce", "gambar": "_screens/img48.png" },
+        { "nama": "Coffee", "kategori": "E-commerce", "gambar": "_screens/img49.png" },
+        { "nama": "Shop", "kategori": "E-commerce", "gambar": "_screens/img50.png" },
+        { "nama": "Anime", "kategori": "Game", "gambar": "_screens/img51.png" },
+        { "nama": "Karl", "kategori": "E-commerce", "gambar": "_screens/img53.png" },
+        { "nama": "Woody", "kategori": "Bisnis", "gambar": "_screens/img54.png" },
+        { "nama": "Violet", "kategori": "E-commerce", "gambar": "_screens/img56.png" },
+        { "nama": "Ensurance", "kategori": "Bisnis", "gambar": "_screens/img58.png" },
+        { "nama": "DGital", "kategori": "Bisnis", "gambar": "_screens/img59.png" },
+        { "nama": "Famms", "kategori": "E-commerce", "gambar": "_screens/img60.png" },
+        { "nama": "Material kit 2", "kategori": "Multipurpose", "gambar": "_screens/img61.png" },
+        { "nama": "Chain", "kategori": "Landing Page", "gambar": "_screens/img62.png" },
+        { "nama": "Patrix", "kategori": "Landing Page", "gambar": "_screens/img63.png" },
+        { "nama": "Dtox", "kategori": "Landing Page", "gambar": "_screens/img64.png" },
+        { "nama": "Livedoc", "kategori": "Medis", "gambar": "_screens/img65.png" },
+        { "nama": "Zinc", "kategori": "Bisnis", "gambar": "_screens/img66.png" },
+        { "nama": "Simple", "kategori": "Landing Page", "gambar": "_screens/img67.png" },
+        { "nama": "Ioniq", "kategori": "Bisnis", "gambar": "_screens/img68.png" },
+        { "nama": "Nubis", "kategori": "Bisnis", "gambar": "_screens/img69.png" },
+        { "nama": "Medic Care", "kategori": "Medis", "gambar": "_screens/img70.png" },
+        { "nama": "Makan", "kategori": "Bisnis", "gambar": "_screens/img02.png" },
+        { "nama": "Yavin", "kategori": "Bisnis", "gambar": "_screens/img71.png" },
+        { "nama": "Soft UI", "kategori": "Admin", "gambar": "_screens/img72.png" },
+        { "nama": "Convid", "kategori": "Medis", "gambar": "_screens/img74.png" },
+        { "nama": "Digitalex", "kategori": "Lainnya", "gambar": "_screens/img75.png" },
+        { "nama": "Eden", "kategori": "Lainnya", "gambar": "_screens/img76.png" },
+        { "nama": "Rettro", "kategori": "Fotografi", "gambar": "_screens/img77.png" },
+        { "nama": "JoBest", "kategori": "Landing Page", "gambar": "_screens/img78.png" },
+        { "nama": "Corona", "kategori": "Admin", "gambar": "_screens/img01.png" },
+        { "nama": "Purple Buzz", "kategori": "Lainnya", "gambar": "_screens/img79.png" },
+        { "nama": "Open Enterprise", "kategori": "Bisnis", "gambar": "_screens/img80.png" },
+        { "nama": "Karmo", "kategori": "Lainnya", "gambar": "_screens/img81.png" },
+        { "nama": "Celestial", "kategori": "Admin", "gambar": "_screens/img82.png" },
+        { "nama": "Rhea", "kategori": "Landing Page", "gambar": "_screens/img83.png" },
+        { "nama": "DataWarehouse", "kategori": "Landing Page", "gambar": "_screens/img84.png" },
+        { "nama": "Mosaic", "kategori": "Bisnis", "gambar": "_screens/img85.png" },
+        { "nama": "Cial", "kategori": "Lainnya", "gambar": "_screens/img86.png" },
+        { "nama": "Ashion", "kategori": "E-commerce", "gambar": "_screens/img87.png" },
+        { "nama": "Podcast", "kategori": "Lainnya", "gambar": "_screens/img88.png" },
+        { "nama": "Rezume", "kategori": "Portofolio", "gambar": "_screens/img89.png" },
+        { "nama": "Hightech", "kategori": "Lainnya", "gambar": "_screens/img90.png" },
+        { "nama": "Boto", "kategori": "Fotografi", "gambar": "_screens/img91.png" },
+        { "nama": "Flat Able", "kategori": "Admin", "gambar": "_screens/img92.png" },
+        { "nama": "Tinydash", "kategori": "Admin", "gambar": "_screens/img93.png" },
+        { "nama": "Game Warrior", "kategori": "Game", "gambar": "_screens/img94.png" },
+        { "nama": "Meranda", "kategori": "Lainnya", "gambar": "_screens/img95.png" },
+        { "nama": "React Reduction", "kategori": "Admin", "gambar": "_screens/img96.png" },
+        { "nama": "Dingo", "kategori": "Kuliner", "gambar": "_screens/img97.png" },
+        { "nama": "GoTrip", "kategori": "Travel", "gambar": "_screens/img98.png" },
+        { "nama": "Studio", "kategori": "Fotografi", "gambar": "_screens/img99.png" },
+        { "nama": "Newsboxs", "kategori": "Lainnya", "gambar": "_screens/img100.png" },
+
+        // Data dari snippet 3
+        { "nama": "Tasty", "kategori": "Kuliner", "gambar": "_screens/02 tasty.png" },
+        { "nama": "Karmo", "kategori": "Lainnya", "gambar": "_screens/04 karmo.png" },
+        { "nama": "Foodee", "kategori": "Kuliner", "gambar": "_screens/01 foodee.png" },
+        { "nama": "Ethereal", "kategori": "Kreatif", "gambar": "_screens/03 ethereal.png" },
+        { "nama": "Portfolio", "kategori": "Portofolio", "gambar": "_screens/06 portfolio-master.png" },
+        { "nama": "Bodo", "kategori": "Lainnya", "gambar": "_screens/05 bodo.png" },
+        { "nama": "Snow", "kategori": "Lainnya", "gambar": "_screens/07 Snow-master.png" },
+        { "nama": "Synthetica", "kategori": "Lainnya", "gambar": "_screens/08 Synthetica.png" },
+        { "nama": "Bicycling", "kategori": "Lainnya", "gambar": "_screens/10 bicycling-master.png" },
+        { "nama": "CookingSchool", "kategori": "Edukasi", "gambar": "_screens/100 CookingSchool.png" },
+        { "nama": "Megakit", "kategori": "Lainnya", "gambar": "_screens/11 megakit-master.png" },
+        { "nama": "Garage", "kategori": "Lainnya", "gambar": "_screens/12 GARAGE.png" },
+        { "nama": "Knight", "kategori": "Lainnya", "gambar": "_screens/13 Knight.png" },
+        { "nama": "New Age", "kategori": "Lainnya", "gambar": "_screens/14 New Age.png" },
+        { "nama": "Treviso", "kategori": "Lainnya", "gambar": "_screens/15 Treviso.png" },
+        { "nama": "Story", "kategori": "Lainnya", "gambar": "_screens/16 story.png" },
+        { "nama": "Cardio", "kategori": "Lainnya", "gambar": "_screens/17 Cardio.png" },
+        { "nama": "Infinity", "kategori": "Lainnya", "gambar": "_screens/18 infinity.png" },
+        { "nama": "Made One", "kategori": "Lainnya", "gambar": "_screens/19 Made One.png" },
+        { "nama": "Made Two", "kategori": "Lainnya", "gambar": "_screens/20 Made Two.png" },
+        { "nama": "Weather", "kategori": "Lainnya", "gambar": "_screens/21 Weather.png" },
+        { "nama": "John Doe", "kategori": "Portofolio", "gambar": "_screens/22 John Doe.png" },
+        { "nama": "Rage", "kategori": "Lainnya", "gambar": "_screens/23 rage.png" },
+        { "nama": "Solid-State", "kategori": "Lainnya", "gambar": "_screens/24 Solid-State.png" },
+        { "nama": "Invention", "kategori": "Lainnya", "gambar": "_screens/25 Invention.png" },
+        { "nama": "Exigo", "kategori": "Lainnya", "gambar": "_screens/26 exigo.png" },
+        { "nama": "Logic", "kategori": "Lainnya", "gambar": "_screens/27 logic.png" },
+        { "nama": "Clemo", "kategori": "Lainnya", "gambar": "_screens/28 clemo.png" },
+        { "nama": "Bino", "kategori": "Lainnya", "gambar": "_screens/29 bino.png" },
+        { "nama": "Hats", "kategori": "Lainnya", "gambar": "_screens/30 hats.png" },
+        { "nama": "Vira", "kategori": "Lainnya", "gambar": "_screens/31 vira.png" },
+        { "nama": "Landing Zero", "kategori": "Landing Page", "gambar": "_screens/32 landing-zero.png" },
+        { "nama": "Aircv", "kategori": "Lainnya", "gambar": "_screens/33 Aircv.png" },
+        { "nama": "Wow", "kategori": "Lainnya", "gambar": "_screens/34 wow.png" },
+        { "nama": "Volcan", "kategori": "Lainnya", "gambar": "_screens/35 Volcan.png" },
+        { "nama": "Rabbit", "kategori": "Lainnya", "gambar": "_screens/36 rabbit.png" },
+        { "nama": "Lazyfox", "kategori": "Lainnya", "gambar": "_screens/37 Lazyfox.png" },
+        { "nama": "Conference", "kategori": "Lainnya", "gambar": "_screens/38 conference.png" },
+        { "nama": "Sight", "kategori": "Lainnya", "gambar": "_screens/39 SIGHT.png" },
+        { "nama": "Metronic Shop UI", "kategori": "E-commerce", "gambar": "_screens/40 Metronic-Shop-UI.png" },
+        { "nama": "Metronic One Page", "kategori": "Lainnya", "gambar": "_screens/41 Metronic-One-Page.png" },
+        { "nama": "Navigator Onepage", "kategori": "Landing Page", "gambar": "_screens/42 navigator-onepage.png" },
+        { "nama": "Fame", "kategori": "Lainnya", "gambar": "_screens/44 fame.png" },
+        { "nama": "Themelight", "kategori": "Lainnya", "gambar": "_screens/45 themelight.png" },
+        { "nama": "Plantilla", "kategori": "Lainnya", "gambar": "_screens/46 Plantilla.png" },
+        { "nama": "Avana", "kategori": "Lainnya", "gambar": "_screens/47 avana.png" },
+        { "nama": "Metronic Frontend", "kategori": "Lainnya", "gambar": "_screens/48 Metronic-Frontend.png" },
+        { "nama": "Asentus", "kategori": "Bisnis", "gambar": "_screens/49 Asentus.png" },
+        { "nama": "Acidus", "kategori": "Lainnya", "gambar": "_screens/51 acidus.png" },
+        { "nama": "Airspace", "kategori": "Lainnya", "gambar": "_screens/50 airspace.png" },
+        { "nama": "AppLayers", "kategori": "Lainnya", "gambar": "_screens/52 AppLayers.png" },
+        { "nama": "BizExpress", "kategori": "Bisnis", "gambar": "_screens/53 BizExpress.png" },
+        { "nama": "Bizium", "kategori": "Bisnis", "gambar": "_screens/54 Bizium.png" },
+        { "nama": "Robot Factory", "kategori": "Lainnya", "gambar": "_screens/55 robot_factory.png" },
+        { "nama": "Ghughu", "kategori": "Lainnya", "gambar": "_screens/56 ghughu.png" },
+        { "nama": "Texas Lawyer", "kategori": "Lainnya", "gambar": "_screens/57 Texas-Lawyer.png" },
+        { "nama": "Lifetrackr", "kategori": "Lainnya", "gambar": "_screens/58 lifetrackr.png" },
+        { "nama": "Euro Travels", "kategori": "Travel", "gambar": "_screens/59 Euro-Travels.png" },
+        { "nama": "Mamma's Kitchen", "kategori": "Kuliner", "gambar": "_screens/61 Mamma-s-Kitchen.png" },
+        { "nama": "MeatKing", "kategori": "Kuliner", "gambar": "_screens/60 MeatKing.png" },
+        { "nama": "Twenty", "kategori": "Lainnya", "gambar": "_screens/62 Twenty.png" },
+        { "nama": "Spectral", "kategori": "Lainnya", "gambar": "_screens/63 Spectral.png" },
+        { "nama": "Boxer", "kategori": "Lainnya", "gambar": "_screens/65 boxer.png" },
+        { "nama": "White Pro", "kategori": "Lainnya", "gambar": "_screens/66 white_pro.png" },
+        { "nama": "Awesome", "kategori": "Lainnya", "gambar": "_screens/67 awesome.png" },
+        { "nama": "JohnDoe", "kategori": "Portofolio", "gambar": "_screens/68 JohnDoe.png" },
+        { "nama": "Lucy", "kategori": "Portofolio", "gambar": "_screens/69 lucy.png" },
+        { "nama": "Brandi", "kategori": "Lainnya", "gambar": "_screens/70 brandi.png" },
+        { "nama": "Meghna", "kategori": "Lainnya", "gambar": "_screens/71 meghna.png" },
+        { "nama": "Navada Plus", "kategori": "Lainnya", "gambar": "_screens/72 Navada-plus.png" },
+        { "nama": "Rain", "kategori": "Lainnya", "gambar": "_screens/73 Rain.png" },
+        { "nama": "Sports Coach", "kategori": "Lainnya", "gambar": "_screens/74 sports-coach.png" },
+        { "nama": "Agency", "kategori": "Lainnya", "gambar": "_screens/75 agency.png" },
+        { "nama": "Humanity", "kategori": "Lainnya", "gambar": "_screens/76 humanity.png" },
+        { "nama": "Evento", "kategori": "Lainnya", "gambar": "_screens/78 Evento.png" },
+        { "nama": "Imminent", "kategori": "Lainnya", "gambar": "_screens/77 Imminent.png" },
+        { "nama": "Layla", "kategori": "Lainnya", "gambar": "_screens/79 layla.png" },
+        { "nama": "Restaurant", "kategori": "Kuliner", "gambar": "_screens/80 restaurant.png" },
+        { "nama": "Travellers", "kategori": "Travel", "gambar": "_screens/81 Travellers.png" },
+        { "nama": "Restaurant", "kategori": "Kuliner", "gambar": "_screens/82 Restaurant.png" },
+        { "nama": "Fitness", "kategori": "Lainnya", "gambar": "_screens/83 Fitness.png" },
+        { "nama": "Creative", "kategori": "Lainnya", "gambar": "_screens/84 Creative.png" },
+        { "nama": "Awesome", "kategori": "Lainnya", "gambar": "_screens/85 Awesome.png" },
+        { "nama": "Luxury", "kategori": "Lainnya", "gambar": "_screens/87 Luxury.png" },
+        { "nama": "Photographer", "kategori": "Fotografi", "gambar": "_screens/86 Photographer.png" },
+        { "nama": "DarkJoe", "kategori": "Portofolio", "gambar": "_screens/88 DarkJoe.png" },
+        { "nama": "Developer", "kategori": "Lainnya", "gambar": "_screens/89 Developer.png" },
+        { "nama": "Polo", "kategori": "Lainnya", "gambar": "_screens/90 polo.png" },
+        { "nama": "Renessa", "kategori": "Lainnya", "gambar": "_screens/91 Renessa.png" },
+        { "nama": "Office", "kategori": "Lainnya", "gambar": "_screens/92 Office.png" },
+        { "nama": "Flusk", "kategori": "Landing Page", "gambar": "_screens/93 Flusk.png" },
+        { "nama": "The Portfolio", "kategori": "Portofolio", "gambar": "_screens/94 the_portfolio.png" },
+        { "nama": "Initio", "kategori": "Lainnya", "gambar": "_screens/95 Initio.png" },
+        { "nama": "Dolphin", "kategori": "Multipurpose", "gambar": "_screens/96 dolphin.png" },
+        { "nama": "Soft-Tech", "kategori": "Landing Page", "gambar": "_screens/97 Soft-Tech.png" },
+        { "nama": "Mind-Craft", "kategori": "Landing Page", "gambar": "_screens/98 Mind-Craft.png" },
+        { "nama": "Season", "kategori": "Lainnya", "gambar": "_screens/99 Season.png" },
+
+        // Data dari snippet 4
+        { "nama": "Andrea", "kategori": "Portofolio", "gambar": "_screens/andrea-master.png" },
+        { "nama": "Arclabs", "kategori": "Kreatif", "gambar": "_screens/arclabs-master.png" },
+        { "nama": "Ace", "kategori": "General", "gambar": "_screens/ace.png" },
+        { "nama": "Augustine", "kategori": "Portofolio", "gambar": "_screens/Augustine_1_0_0.png" },
+        { "nama": "Cassi", "kategori": "Portofolio", "gambar": "_screens/cassi-master.png" },
+        { "nama": "Birdor", "kategori": "General", "gambar": "_screens/Birdor-1.0.0.png" },
+        { "nama": "Blogy", "kategori": "Blog", "gambar": "_screens/blogy-1.0.0.png" },
+        { "nama": "Dronephotography", "kategori": "Fotografi", "gambar": "_screens/dronephotography-main.png" },
+        { "nama": "Elegence", "kategori": "Kreatif", "gambar": "_screens/elegence-main.png" },
+        { "nama": "Elen", "kategori": "Portofolio", "gambar": "_screens/elen-master.png" },
+        { "nama": "Foto", "kategori": "Fotografi", "gambar": "_screens/foto-master.png" },
+        { "nama": "Foodeiblog", "kategori": "Blog", "gambar": "_screens/foodeiblog-master.png" },
+        { "nama": "Furni", "kategori": "E-commerce", "gambar": "_screens/furni-1.0.0.png" },
+        { "nama": "Furnics", "kategori": "E-commerce", "gambar": "_screens/furnics-1.0.0.png" },
+        { "nama": "Girly", "kategori": "Blog", "gambar": "_screens/girly-master.png" },
+        { "nama": "Klar", "kategori": "General", "gambar": "_screens/klar-1.0.0.png" },
+        { "nama": "LifeStyleMag", "kategori": "Blog", "gambar": "_screens/LifeStyleMag-1.0.0.png" },
+        { "nama": "Minimal", "kategori": "Portofolio", "gambar": "_screens/minimal-1.0.0.png" },
+        { "nama": "Mark", "kategori": "Portofolio", "gambar": "_screens/mark.png" },
+        { "nama": "Monica", "kategori": "Portofolio", "gambar": "_screens/monica-1.0.0.png" },
+        { "nama": "Moon", "kategori": "Kreatif", "gambar": "_screens/moon-master.png" },
+        { "nama": "Myportfolio", "kategori": "Portofolio", "gambar": "_screens/myportfolio-master.png" },
+        { "nama": "Mosaic", "kategori": "Portofolio", "gambar": "_screens/mosaic-master.png" },
+        { "nama": "Mostudio", "kategori": "Kreatif", "gambar": "_screens/mostudio-master.png" },
+        { "nama": "Nextpage Lite", "kategori": "Blog", "gambar": "_screens/nextpage-lite.png" },
+        { "nama": "Nimo", "kategori": "General", "gambar": "_screens/Nimo-1.0.0.png" },
+        { "nama": "Photosen", "kategori": "Fotografi", "gambar": "_screens/photosen-master.png" },
+        { "nama": "Painto", "kategori": "Portofolio", "gambar": "_screens/Painto-1.0.0.png" },
+        { "nama": "Sided", "kategori": "General", "gambar": "_screens/sided-master.png" },
+        { "nama": "Snap", "kategori": "Portofolio", "gambar": "_screens/snap-1.0.0.png" },
+        { "nama": "Snapx", "kategori": "Portofolio", "gambar": "_screens/snapx-1.0.0.png" },
+        { "nama": "Snapshot", "kategori": "Fotografi", "gambar": "_screens/snapshot-master.png" },
+        { "nama": "Spurgeon", "kategori": "Blog", "gambar": "_screens/Spurgeon_1_0_0.png" },
+        { "nama": "Swanky", "kategori": "E-commerce", "gambar": "_screens/swanky-1.0.0.png" },
+        { "nama": "Vintagefur", "kategori": "E-commerce", "gambar": "_screens/vintagefur-1.0.0.png" },
+        { "nama": "Editorial", "kategori": "Blog", "gambar": "_screens/editorial.png" },
+        { "nama": "Dopetrope", "kategori": "General", "gambar": "_screens/dopetrope.png" },
+        { "nama": "Phantom", "kategori": "General", "gambar": "_screens/phantom.png" },
+        { "nama": "Paradigm Shift", "kategori": "Bisnis", "gambar": "_screens/paradigm-shift.png" },
+        { "nama": "Aranoz", "kategori": "E-commerce", "gambar": "_screens/aranoz-master.png" },
+        { "nama": "Argon Dashboard", "kategori": "Admin", "gambar": "_screens/argon-dashboard.png" },
+        { "nama": "Ashion", "kategori": "E-commerce", "gambar": "_screens/ashion-master.png" },
+        { "nama": "Bankdash", "kategori": "Admin", "gambar": "_screens/bankdash.png" },
+        { "nama": "Base", "kategori": "General", "gambar": "_screens/base.png" },
+        { "nama": "Booksaw", "kategori": "E-commerce", "gambar": "_screens/booksaw-1.0.0.png" },
+        { "nama": "Dabang", "kategori": "General", "gambar": "_screens/dabang.png" },
+        { "nama": "Darkpan", "kategori": "Admin", "gambar": "_screens/darkpan-1.0.0.png" },
+        { "nama": "Dashmin", "kategori": "Admin", "gambar": "_screens/dashmin-1.0.0.png" },
+        { "nama": "Eflyer", "kategori": "E-commerce", "gambar": "_screens/eflyer-master.png" },
+        { "nama": "Elegent", "kategori": "E-commerce", "gambar": "_screens/elegent.png" },
+        { "nama": "Eshopper", "kategori": "E-commerce", "gambar": "_screens/eshopper-1.0.0.png" },
+        { "nama": "Famms", "kategori": "E-commerce", "gambar": "_screens/famms-1.0.0.png" },
+        { "nama": "FoodMart", "kategori": "E-commerce", "gambar": "_screens/FoodMart-1.0.0.png" },
+        { "nama": "Footwear", "kategori": "E-commerce", "gambar": "_screens/footwear-master.png" },
+        { "nama": "Fruitables", "kategori": "E-commerce", "gambar": "_screens/fruitables-1.0.0.png" },
+        { "nama": "Frutika", "kategori": "E-commerce", "gambar": "_screens/frutika-master.png" },
+        { "nama": "Hexashop", "kategori": "E-commerce", "gambar": "_screens/hexashop-1.0.0.png" },
+        { "nama": "Horizon", "kategori": "Admin", "gambar": "_screens/horizon.png" },
+        { "nama": "Kaiadmin Lite", "kategori": "Admin", "gambar": "_screens/kaiadmin-lite-1.2.0.png" },
+        { "nama": "Kaira", "kategori": "Portofolio", "gambar": "_screens/kaira-1.0.0.png" },
+        { "nama": "Karma", "kategori": "E-commerce", "gambar": "_screens/karma-master.png" },
+        { "nama": "Majestic", "kategori": "Admin", "gambar": "_screens/majestic-v1.0.1.png" },
+        { "nama": "Malefashion", "kategori": "E-commerce", "gambar": "_screens/malefashion-master.png" },
+        { "nama": "Materio", "kategori": "Admin", "gambar": "_screens/materio.png" },
+        { "nama": "Minishop", "kategori": "E-commerce", "gambar": "_screens/minishop-master.png" },
+        { "nama": "MiniStore", "kategori": "E-commerce", "gambar": "_screens/MiniStore-1.0.0.png" },
+        { "nama": "Motiv", "kategori": "Admin", "gambar": "_screens/motiv.png" },
+        { "nama": "Nickelfox", "kategori": "Kreatif", "gambar": "_screens/nickelfox.png" },
+        { "nama": "Organic", "kategori": "E-commerce", "gambar": "_screens/organic-1.0.0.png" },
+        { "nama": "Pillowmart", "kategori": "E-commerce", "gambar": "_screens/pillowmart-master.png" },
+        { "nama": "React Dashboard Material", "kategori": "Admin", "gambar": "_screens/react-dashboard-material.gif" },
+        { "nama": "Shionhouse", "kategori": "E-commerce", "gambar": "_screens/shionhouse-master.png" },
+        { "nama": "Shopmax", "kategori": "E-commerce", "gambar": "_screens/shopmax-master.png" },
+        { "nama": "Soft-UI-Dashboard-React", "kategori": "Admin", "gambar": "_screens/soft-ui-dashboard-react.png" },
+        { "nama": "Spike-Nuxtjs-Free", "kategori": "Admin", "gambar": "_screens/spike-nuxtjs-free.png" },
+        { "nama": "Stylish", "kategori": "E-commerce", "gambar": "_screens/stylish-1.0.0.png" },
+        { "nama": "Tropika", "kategori": "E-commerce", "gambar": "_screens/tropika-master.png" },
+        { "nama": "Ultras", "kategori": "E-commerce", "gambar": "_screens/ultras-1.0.0.png" },
+        { "nama": "Venus", "kategori": "E-commerce", "gambar": "_screens/venus.png" },
+        { "nama": "Waggy", "kategori": "E-commerce", "gambar": "_screens/waggy-1.0.0.png" },
+
+        // Data dari snippet 5
+        { "nama": "Star Admin", "kategori": "Admin", "gambar": "_screens/1-star-admin.png" },
+        { "nama": "Iconic", "kategori": "Bisnis", "gambar": "_screens/2-iconic.png" },
+        { "nama": "Watch", "kategori": "E-commerce", "gambar": "_screens/3-watch.png" },
+        { "nama": "Tabler", "kategori": "Admin", "gambar": "_screens/4-tabler.png" },
+        { "nama": "Unapp", "kategori": "Landing Page", "gambar": "_screens/5-unapp.png" },
+        { "nama": "Exclusive", "kategori": "Landing Page", "gambar": "_screens/6-exclusive.png" },
+        { "nama": "Ready Dashboard", "kategori": "Admin", "gambar": "_screens/7-ready-dashboard.png" },
+        { "nama": "Infinity", "kategori": "Bisnis", "gambar": "_screens/8-infinity.png" },
+        { "nama": "Elate", "kategori": "Multipurpose", "gambar": "_screens/9-elate.png" },
+        { "nama": "Consult", "kategori": "Bisnis", "gambar": "_screens/10-consult.png" },
+        { "nama": "Material Lite", "kategori": "Admin", "gambar": "_screens/11-material-lite.png" },
+        { "nama": "Fancy", "kategori": "Bisnis", "gambar": "_screens/12-fancy.png" },
+        { "nama": "Avilon", "kategori": "Landing Page", "gambar": "_screens/13-avilon.png" },
+        { "nama": "Travelista", "kategori": "Travel", "gambar": "_screens/14-travelista.png" },
+        { "nama": "Vex", "kategori": "Landing Page", "gambar": "_screens/15-vex.png" },
+        { "nama": "Datarc", "kategori": "Bisnis", "gambar": "_screens/16-datarc.png" },
+        { "nama": "Known", "kategori": "Lainnya", "gambar": "_screens/17-known.png" },
+        { "nama": "Mobiapp", "kategori": "Bisnis", "gambar": "_screens/18-mobiapp.png" },
+        { "nama": "Vira", "kategori": "Bisnis", "gambar": "_screens/19-vira.png" },
+        { "nama": "Osteriax", "kategori": "Kuliner", "gambar": "_screens/20-osteriax.png" },
+        { "nama": "Reveal", "kategori": "Bisnis", "gambar": "_screens/21-reveal.png" },
+        { "nama": "Wedding", "kategori": "Lainnya", "gambar": "_screens/22-wedding.png" },
+        { "nama": "Photography", "kategori": "Fotografi", "gambar": "_screens/23-photography.png" },
+        { "nama": "Book", "kategori": "Bisnis", "gambar": "_screens/24-book.png" },
+        { "nama": "Job Listing", "kategori": "Bisnis", "gambar": "_screens/25-job-listing.png" },
+        { "nama": "Awesome Landing Page", "kategori": "Landing Page", "gambar": "_screens/26-awesome-landing-page.png" },
+        { "nama": "Course", "kategori": "Lainnya", "gambar": "_screens/27-course.png" },
+        { "nama": "Apex App", "kategori": "Landing Page", "gambar": "_screens/28-apex-app.png" },
+        { "nama": "Essence", "kategori": "E-commerce", "gambar": "_screens/29-essence.png" },
+        { "nama": "Comply", "kategori": "Landing Page", "gambar": "_screens/30-comply.png" },
+        { "nama": "Imperial", "kategori": "Bisnis", "gambar": "_screens/31-imperial.png" },
+        { "nama": "Classimax", "kategori": "Bisnis", "gambar": "_screens/32-classimax.png" },
+        { "nama": "Maze", "kategori": "Portofolio", "gambar": "_screens/33-maze.png" },
+        { "nama": "Creative Agency", "kategori": "Bisnis", "gambar": "_screens/34-creative-agency.png" },
+        { "nama": "Evie", "kategori": "Landing Page", "gambar": "_screens/35-evie.png" },
+        { "nama": "Adventure", "kategori": "Travel", "gambar": "_screens/36-adventure.png" },
+        { "nama": "Diner", "kategori": "Kuliner", "gambar": "_screens/37-diner.png" },
+        { "nama": "eBusiness", "kategori": "Multipurpose", "gambar": "_screens/38-ebusiness.png" },
+        { "nama": "Traveler", "kategori": "Travel", "gambar": "_screens/39-traveler.png" },
+        { "nama": "BizPage", "kategori": "Bisnis", "gambar": "_screens/40-bizpage.png" },
+        { "nama": "Shop", "kategori": "E-commerce", "gambar": "_screens/41-shop.png" },
+        { "nama": "Taste", "kategori": "Kuliner", "gambar": "_screens/42-taste.png" },
+        { "nama": "Neat", "kategori": "Portofolio", "gambar": "_screens/43-neat.png" },
+        { "nama": "Law", "kategori": "Bisnis", "gambar": "_screens/44-law.png" },
+        { "nama": "Soft-Tech", "kategori": "Landing Page", "gambar": "_screens/45-soft-tech.png" },
+        { "nama": "Health Center", "kategori": "Medis", "gambar": "_screens/46-health-center.png" },
+        { "nama": "Burnout", "kategori": "Medis", "gambar": "_screens/47-burnout.png" },
+        { "nama": "Fame", "kategori": "Bisnis", "gambar": "_screens/48-fame.png" },
+        { "nama": "Armando", "kategori": "Bisnis", "gambar": "_screens/49-armando.png" },
+        { "nama": "Interior", "kategori": "Bisnis", "gambar": "_screens/50-interior.png" },
+        { "nama": "Kindle", "kategori": "Landing Page", "gambar": "_screens/51-kindle.png" },
+        { "nama": "Mind Craft", "kategori": "Landing Page", "gambar": "_screens/52-mind-craft.png" },
+        { "nama": "Flame", "kategori": "Bisnis", "gambar": "_screens/53-flame.png" },
+        { "nama": "Cavier", "kategori": "Kuliner", "gambar": "_screens/54-cavier.png" },
+        { "nama": "Ruby", "kategori": "Bisnis", "gambar": "_screens/55-ruby.png" },
+        { "nama": "Enlight", "kategori": "Lainnya", "gambar": "_screens/56-enlight.png" },
+        { "nama": "Touche", "kategori": "Kuliner", "gambar": "_screens/57-touche.png" },
+        { "nama": "Bell", "kategori": "Bisnis", "gambar": "_screens/58-bell.png" },
+        { "nama": "RanGo", "kategori": "Multipurpose", "gambar": "_screens/59-rango.png" },
+        { "nama": "Purple Admin", "kategori": "Admin", "gambar": "_screens/60-purple-admin.png" },
+        { "nama": "Medi Life", "kategori": "Medis", "gambar": "_screens/61-medi-life.png" },
+        { "nama": "X-Man", "kategori": "Portofolio", "gambar": "_screens/62-x-man.png" },
+        { "nama": "Aside", "kategori": "Portofolio", "gambar": "_screens/63-aside.png" },
+        { "nama": "B-Hero", "kategori": "Bisnis", "gambar": "_screens/64-b-hero.png" },
+        { "nama": "Businessbox", "kategori": "Bisnis", "gambar": "_screens/65-businessbox.png" },
+        { "nama": "CareMed", "kategori": "Medis", "gambar": "_screens/66-caremed.png" },
+        { "nama": "The Real Wedding", "kategori": "Lainnya", "gambar": "_screens/67-the-real-wedding.png" },
+        { "nama": "Magnum", "kategori": "Portofolio", "gambar": "_screens/68-magnum.png" },
+        { "nama": "Dolphin", "kategori": "Multipurpose", "gambar": "_screens/69-dolphin.png" },
+        { "nama": "Savory", "kategori": "Portofolio", "gambar": "_screens/70-savory.png" },
+        { "nama": "Raising", "kategori": "Bisnis", "gambar": "_screens/71-raising.png" },
+        { "nama": "Razor", "kategori": "Lainnya", "gambar": "_screens/72-razor.png" },
+        { "nama": "Wired UI Kit", "kategori": "Lainnya", "gambar": "_screens/73-wired-ui-kit.png" },
+        { "nama": "Ezuca", "kategori": "Lainnya", "gambar": "_screens/74-ezuca.png" },
+        { "nama": "Startup", "kategori": "Bisnis", "gambar": "_screens/75-startup.png" },
+        { "nama": "Pato", "kategori": "Kuliner", "gambar": "_screens/76-pato.png" },
+        { "nama": "Elisa", "kategori": "Multipurpose", "gambar": "_screens/77-elisa.png" },
+        { "nama": "NGX-Admin", "kategori": "Admin", "gambar": "_screens/78-ngx-admin.png" },
+        { "nama": "BizPro", "kategori": "Bisnis", "gambar": "_screens/79-bizpro.png" },
+        { "nama": "Atlas", "kategori": "Bisnis", "gambar": "_screens/80-atlas.png" },
+        { "nama": "Titan", "kategori": "Multipurpose", "gambar": "_screens/81-titan.png" },
+        { "nama": "Skewla", "kategori": "Lainnya", "gambar": "_screens/82-skewla.png" },
+        { "nama": "Royal Hotel", "kategori": "Travel", "gambar": "_screens/83-royal-hotel.png" },
+        { "nama": "Nitro", "kategori": "Portofolio", "gambar": "_screens/84-nitro.png" },
+        { "nama": "Vacay Home", "kategori": "Travel", "gambar": "_screens/85-vacay-home.png" },
+        { "nama": "Awesome", "kategori": "Bisnis", "gambar": "_screens/86-awesome.png" },
+        { "nama": "Dentist", "kategori": "Medis", "gambar": "_screens/87-dentist.png" },
+        { "nama": "Admin Bsb", "kategori": "Admin", "gambar": "_screens/88-admin-bsb-.png" },
+        { "nama": "Stisla", "kategori": "Portofolio", "gambar": "_screens/89-stisla.png" },
+        { "nama": "South", "kategori": "Bisnis", "gambar": "_screens/90-south.png" },
+        { "nama": "Scribbler", "kategori": "Lainnya", "gambar": "_screens/91-scribbler.png" },
+        { "nama": "World", "kategori": "Lainnya", "gambar": "_screens/92-world.png" },
+        { "nama": "Count", "kategori": "Lainnya", "gambar": "_screens/93-count.png" },
+        { "nama": "Life Care", "kategori": "Medis", "gambar": "_screens/94-life-care.png" },
+        { "nama": "The Gazette", "kategori": "Lainnya", "gambar": "_screens/95-the-gazette.png" },
+        { "nama": "Avana", "kategori": "Portofolio", "gambar": "_screens/96-avana.png" },
+        { "nama": "Seo", "kategori": "Bisnis", "gambar": "_screens/97-seo.png" },
+        { "nama": "Profile", "kategori": "Portofolio", "gambar": "_screens/98-profile.png" },
+        { "nama": "Electro", "kategori": "E-commerce", "gambar": "_screens/99-electro.png" },
+        { "nama": "Blanca", "kategori": "Portofolio", "gambar": "_screens/100-blanca.png" }
+    ];
+
+    const gridContainer = $('#showcase-grid');
+    const navContainer = $('.filter-nav');
+
+    // Fungsi untuk membuat HTML satu kartu
+    function createCard(item) {
+        const name = item.nama;
+        const imageName = item.gambar;
+        const category = item.kategori;
+        const fallbackImage = `https://placehold.co/600x400/1f2937/ffffff?text=${encodeURIComponent(name.replace(' ', '+'))}`;
+
+        return `
+                    <div class="p-4 card-wrapper">
+                        <div class="card-item group rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
+                            <a class="no-underline" href="#">
+                                <div class="overflow-hidden">
+                                    <img class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110" 
+                                        src="${imageName}" 
+                                        alt="${name}" 
+                                        onerror="this.onerror=null;this.src='${fallbackImage}';" />
+                                </div>
+                                <div class="p-5 text-center">
+                                    <h4 class="text-lg font-bold text-white mb-2 capitalize">${name}</h4>
+                                    <div class="flex items-center justify-center gap-2">
+                                        <div class="text-sm text-gray-400 font-medium">${category}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                `;
+    }
+
+    // Fungsi untuk me-render grid berdasarkan data yang diberikan
+    function renderGrid(data) {
+        gridContainer.fadeOut(200, function () {
+            $(this).empty(); // Kosongkan grid setelah fade out
+
+            if (data.length === 0) {
+                $(this).html('<p class="w-full text-center text-gray-400">Tidak ada template yang cocok.</p>').fadeIn(200);
+                return;
+            }
+
+            // Tentukan jumlah kolom
+            const numColumns = window.innerWidth >= 768 ? 3 : 1; // 3 kolom untuk desktop, 1 untuk mobile
+            const columnsData = Array.from({ length: numColumns }, () => []);
+
+            // Distribusikan item ke kolom-kolom untuk efek masonry
+            data.forEach((item, index) => {
+                columnsData[index % numColumns].push(item);
+            });
+
+            columnsData.forEach(columnItems => {
+                const columnDiv = $('<div class="w-full md:w-1/3"></div>');
+                let columnHtml = '';
+                columnItems.forEach(item => {
+                    columnHtml += createCard(item);
+                });
+                columnDiv.html(columnHtml);
+                $(this).append(columnDiv);
+            });
+
+            $(this).fadeIn(200);
+        });
+    }
+
+    // Generate Filter Navigation
+    const categories = new Set(templateData.map(item => item.kategori));
+    let navLinks = '<a class="nav-link active text-sm font-semibold py-2 px-4 rounded-full transition-colors duration-300 cursor-pointer" href="#" data-filter="*">Semua</a>';
+    const sortedCategories = Array.from(categories).filter(c => c).sort(); // Filter out empty categories
+
+    sortedCategories.forEach(category => {
+        navLinks += `<a class="nav-link text-sm font-semibold py-2 px-4 rounded-full hover:bg-gray-700 hover:text-white transition-colors duration-300 cursor-pointer" href="#" data-filter="${category}">${category}</a>`;
+    });
+    navContainer.html(navLinks);
+
+    // Bind filter click event
+    navContainer.on('click', 'a', function (event) {
+        event.preventDefault();
+        const filterValue = $(this).attr('data-filter');
+
+        if ($(this).hasClass('active')) {
+            return;
+        }
+
+        navContainer.find('a').removeClass('active');
+        $(this).addClass('active');
+
+        const filteredData = filterValue === '*'
+            ? templateData
+            : templateData.filter(item => item.kategori === filterValue);
+
+        renderGrid(filteredData);
+    });
+
+    // Re-render the grid on window resize
+    $(window).on('resize', function () {
+        renderGrid(templateData);
+    });
+
+    // Initial Render
+    renderGrid(templateData);
+});

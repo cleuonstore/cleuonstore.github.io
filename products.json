@@ -1,0 +1,49 @@
+{
+    "Bundling": [
+        {
+            "image_url": "/products/game-assets/cover.png",
+            "color_theme": "red",
+            "title": "Bundling Game Asset",
+            "description": "30.000+ Game Assets Bundle Mulai dari 2D, 3D, UI, Sound FX, hingga Texture — kualitas premium, harga terjangkau! Dilengkapi lisensi komersial, cocok untuk indie dev, studio, atau siapa pun yang bikin game.",
+            "type": "Premium",
+            "showcase": "/products/game-assets/index.html",
+            "link": "https://lynk.id/cleuonstore/2r0vw344e2g9"
+        },
+        {
+            "image_url": "/products/figma-designs/cover.png",
+            "color_theme": "red",
+            "title": "Bundling Design",
+            "description": "672+ UI/UX Design Figma Template untuk berbagai kebutuhan — mulai dari website, aplikasi mobile, Icon, hingga dashboard. Semua template dirancang profesional, siap pakai, dan mudah disesuaikan.",
+            "type": "Premium",
+            "showcase": "/products/figma-designs/index.html",
+            "link": "https://example.com/figma-designs/bundle-01"
+        },
+        {
+            "image_url": "/products/web-templates/cover.png",
+            "color_theme": "red",
+            "title": "Bundling Websites",
+            "description": "Koleksi lengkap 500+ template HTML untuk berbagai kebutuhan ulai dari website bisnis, E-commerce, portofolio, hingga dashboard admin. Semua template dirancang dengan desain profesional, siap pakai, dan mudah disesuaikan.",
+            "type": "Premium",
+            "showcase": "/products/web-templates/index.html",
+            "link": "https://example.com/figma-designs/bundle-01"
+        },
+        {
+            "image_url": "/products/web-undangan/batch-01/cover.png",
+            "color_theme": "red",
+            "title": "Bundling Websites Undangan | Batch 01",
+            "description": "Paket bundling 450++ template undangan digital ini berisi kumpulan desain siap pakai yang elegan dan modern, cocok untuk berbagai acara seperti pernikahan, ulang tahun, aqiqah, dan lainnya. Template dibuat full responsive menggunakan HTML/CSS, mudah disesuaikan, dan dapat digunakan kembali maupun dijual dalam bentuk produk jadi tanpa batas.",
+            "type": "Premium",
+            "showcase": "/products/web-undangan/batch-01/index.html",
+            "link": "https://example.com/figma-designs/bundle-01"
+        },
+        {
+            "image_url": "/products/web-undangan/batch-02/cover.png",
+            "color_theme": "red",
+            "title": "Bundling Websites Undangan | Batch 02",
+            "description": "Paket bundling 410++ template undangan digital ini berisi kumpulan desain siap pakai yang elegan dan modern, cocok untuk berbagai acara seperti pernikahan, ulang tahun, aqiqah, dan lainnya. Template dibuat full responsive menggunakan HTML/CSS, mudah disesuaikan, dan dapat digunakan kembali maupun dijual dalam bentuk produk jadi tanpa batas.",
+            "type": "Premium",
+            "showcase": "/products/web-undangan/batch-02/index.html",
+            "link": "https://example.com/figma-designs/bundle-01"
+        }  
+    ]
+}
