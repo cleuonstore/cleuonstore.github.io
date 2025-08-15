@@ -10,9 +10,9 @@ function generateJSON() {
         .map(dirent => dirent.name);
 
     batchFolders.forEach(batch => {
-        const screensPath = path.join(baseFolder, batch, '_screens');
+        const screensPath = path.join(baseFolder, batch, 'screens');
         if (!fs.existsSync(screensPath)) {
-            console.warn(`⚠️  Lewati ${batch}, tidak ada folder _screens`);
+            console.warn(`⚠️  Lewati ${batch}, tidak ada folder screens`);
             return;
         }
 
@@ -22,7 +22,7 @@ function generateJSON() {
         const jsonData = imageFiles.map(filename => ({
             nama: path.parse(filename).name,
             kategori: "",
-            gambar: `_screens/${filename}`
+            gambar: `screens/${filename}`
         }));
 
         const outputPath = path.join(baseFolder, `${batch}.json`);
