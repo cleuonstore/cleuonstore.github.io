@@ -2059,9 +2059,10 @@ $(document).ready(function () {
                         <div class="card-item group rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
                             <a class="no-underline" href="#">
                                 <div class="overflow-hidden">
-                                    <img class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110" 
-                                        src="${imageName}" 
-                                        alt="${name}" 
+                                    <img class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                                        src="${imageName}"
+                                        alt="${name}"
+                                        loading="lazy"
                                         onerror="this.onerror=null;this.src='${fallbackImage}';" />
                                 </div>
                                 <div class="p-5 text-center">

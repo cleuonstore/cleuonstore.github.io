@@ -2246,7 +2246,7 @@ $(document).ready(function () {
     const gridContainer = $('#showcase-grid');
     const navContainer = $('.filter-nav');
 
-    // Fungsi untuk membuat HTML satu kartu
+    // Fungsi untuk membuat HTML satu kartu dengan lazy loading
     function createCard(item) {
         const name = item.nama;
         const imageName = item.gambar;
@@ -2258,9 +2258,10 @@ $(document).ready(function () {
                         <div class="card-item group rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-500/20">
                             <a class="no-underline" href="#">
                                 <div class="overflow-hidden">
-                                    <img class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110" 
-                                        src="${imageName}" 
-                                        alt="${name}" 
+                                    <img class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+                                        src="${imageName}"
+                                        alt="${name}"
+                                        loading="lazy"
                                         onerror="this.onerror=null;this.src='${fallbackImage}';" />
                                 </div>
                                 <div class="p-5 text-center">
@@ -2344,4 +2345,7 @@ $(document).ready(function () {
 
     // Initial Render
     renderGrid(templateData);
+
+    // Gunakan loading="lazy" bawaan browser untuk optimasi
+    // Tidak perlu fungsi tambahan untuk lazy loading karena saat ini hanya menggunakan atribut loading="lazy"
 });
